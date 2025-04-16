@@ -1,0 +1,282 @@
+﻿<Page
+    x:Class="VM.Pages.PrintBillPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VM.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="PrintBillPage"
+    d:DesignHeight="1000"
+    d:DesignWidth="800"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{md:MaterialDesignFont}"
+    FontSize="18"
+    Loaded="PrintBillPage_OnLoaded"
+    TextElement.FontSize="14"
+    TextElement.FontWeight="Medium"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Unloaded="Page_Unloaded"
+    mc:Ignorable="d">
+
+
+    <md:DialogHost Identifier="pgPrintBillPageHost">
+        <md:DialogHost.DialogContent>
+            <StackPanel />
+        </md:DialogHost.DialogContent>
+        <Grid>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+            <DockPanel>
+                <md:Card
+                    Margin="20"
+                    md:ElevationAssist.Elevation="Dp5"
+                    md:UniformCornerRadius="10">
+
+                    <ScrollViewer
+                        Grid.Row="0"
+                        Margin="10"
+                        PanningMode="VerticalOnly"
+                        VerticalScrollBarVisibility="Auto">
+
+                        <StackPanel>
+
+                            <TextBox
+                                Name="lblMessage"
+                                Margin="0,10"
+                                Text=""
+                                TextAlignment="Center" />
+
+                            <ItemsControl Name="CtlBill" HorizontalAlignment="Center">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <md:Card
+                                            Width="520"
+                                            MinHeight="700"
+                                            Margin="20"
+                                            VerticalAlignment="Center"
+                                            md:ElevationAssist.Elevation="Dp5"
+                                            md:UniformCornerRadius="10"
+                                            Background="White"
+                                            TextElement.Foreground="Black">
+
+                                            <StackPanel Margin="10,30,10,0" VerticalAlignment="Center">
+                                                <TextBlock
+                                                    Margin="0,8"
+                                                    FontWeight="Bold"
+                                                    Text="{Binding Company.Name}"
+                                                    TextAlignment="Center" />
+                                                <TextBlock
+                                                    Text="{Binding Company.Address}"
+                                                    TextAlignment="Center"
+                                                    TextWrapping="Wrap" />
+
+                                                <TextBlock Text="{Binding Company.Mobile, StringFormat=PH : {0}}" TextAlignment="Center" />
+                                                <TextBlock Text="{Binding Company.GstIn, StringFormat=GSTIN : {0}}" TextAlignment="Center" />
+                                                <TextBlock Width="500" Margin="0,10">--------------------------------------------------------------------------------------------------------------</TextBlock>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Width="90" Text="Order No" />
+                                                    <TextBlock Width="10" Text=":" />
+                                                    <TextBlock Width="150" Text="{Binding BillHeader.BillNo}" />
+                                                </StackPanel>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Width="90" Text="Date" />
+                                                    <TextBlock Width="10" Text=":" />
+                                                    <TextBlock Width="150" Text="{Binding BillHeader.Date, StringFormat={}{0:dd-MM-yyyy}}" />
+                                                    <TextBlock Width="90" Text="Time" />
+                                                    <TextBlock Width="10" Text=":" />
+                                                    <TextBlock Width="150" Text="{Binding BillHeader.Date, StringFormat={}{0:hh:mm tt}}" />
+                                                </StackPanel>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Width="90" Text="Terminal" />
+                                                    <TextBlock Width="10" Text=":" />
+                                                    <TextBlock Width="150" Text="{Binding BillHeader.Billedby}" />
+                                                    <TextBlock Width="90" Text="Delivery" />
+                                                    <TextBlock Width="10" Text=":" />
+                                                    <TextBlock Width="150" Text="{Binding BillHeader.DeliveryType}" />
+                                                </StackPanel>
+                                                <TextBlock Width="500" Margin="0,10,0,0">--------------------------------------------------------------------------------------------------------------</TextBlock>
+
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Width="270" Text="ITEM" />
+                                                    <TextBlock
+                                                        Width="50"
+                                                        Text="GST"
+                                                        TextAlignment="Center" />
+                                                    <TextBlock
+                                                        Width="50"
+                                                        Text="PRICE"
+                                                        TextAlignment="Center" />
+                                                    <TextBlock
+                                                        Width="50"
+                                                        Text="QTY"
+                                                        TextAlignment="Center" />
+                                                    <TextBlock
+                                                        Width="80"
+                                                        Text="AMOUNT"
+                                                        TextAlignment="Right" />
+                                                </StackPanel>
+                                                <TextBlock Width="500" Margin="0,0,0,10">--------------------------------------------------------------------------------------------------------------</TextBlock>
+                                                <ItemsControl HorizontalAlignment="Center" ItemsSource="{Binding Items}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Width="270" Text="{Binding Name}" />
+                                                                <TextBlock
+                                                                    Width="50"
+                                                                    Text="{Binding Gst, StringFormat={}{0}%}"
+                                                                    TextAlignment="Center" />
+                                                                <TextBlock
+                                                                    Width="50"
+                                                                    Text="{Binding Price, StringFormat={}{0:0.00}}"
+                                                                    TextAlignment="Center" />
+                                                                <TextBlock
+                                                                    Width="50"
+                                                                    Text="{Binding Qty}"
+                                                                    TextAlignment="Center" />
+                                                                <TextBlock
+                                                                    Width="80"
+                                                                    Text="{Binding TotalPrice, StringFormat={}{0:0.00}}"
+                                                                    TextAlignment="Right" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel />
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                </ItemsControl>
+
+                                                <TextBlock Width="500" Margin="0,10,0,0">--------------------------------------------------------------------------------------------------------------</TextBlock>
+
+                                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                                    <TextBlock
+                                                        FontSize="20"
+                                                        FontWeight="Bold"
+                                                        Text="TOTAL RS. "
+                                                        TextAlignment="Right" />
+                                                    <TextBlock
+                                                        Margin="20,0,0,0"
+                                                        FontSize="20"
+                                                        FontWeight="Bold"
+                                                        Text="{Binding Calculation.Total, StringFormat={}{0:0.00}}"
+                                                        TextAlignment="Right" />
+                                                </StackPanel>
+
+
+                                                <StackPanel Margin="0,30,0,0" Orientation="Horizontal">
+                                                    <TextBlock Width="80" Text="GST" />
+                                                    <TextBlock
+                                                        Width="120"
+                                                        Text="Taxable Amount"
+                                                        TextAlignment="Right" />
+                                                    <TextBlock
+                                                        Width="100"
+                                                        Text="CGST"
+                                                        TextAlignment="Right" />
+                                                    <TextBlock
+                                                        Width="100"
+                                                        Text="SGST"
+                                                        TextAlignment="Right" />
+                                                    <TextBlock
+                                                        Width="100"
+                                                        Text="Total Tax"
+                                                        TextAlignment="Right" />
+                                                </StackPanel>
+
+
+                                                <ItemsControl HorizontalAlignment="Center" ItemsSource="{Binding GstTable}">
+                                                    <ItemsControl.ItemTemplate>
+                                                        <DataTemplate>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Width="80" Text="{Binding GstSlab, StringFormat={}{0}%}" />
+                                                                <TextBlock
+                                                                    Width="120"
+                                                                    Text="{Binding TaxableAmount, StringFormat={}{0:0.00}}"
+                                                                    TextAlignment="Right" />
+                                                                <TextBlock
+                                                                    Width="100"
+                                                                    Text="{Binding Sgst, StringFormat={}{0:0.00}}"
+                                                                    TextAlignment="Right" />
+                                                                <TextBlock
+                                                                    Width="100"
+                                                                    Text="{Binding Cgst, StringFormat={}{0:0.00}}"
+                                                                    TextAlignment="Right" />
+                                                                <TextBlock
+                                                                    Width="100"
+                                                                    Text="{Binding TotalGst, StringFormat={}{0:0.##}}"
+                                                                    TextAlignment="Right" />
+                                                            </StackPanel>
+                                                        </DataTemplate>
+                                                    </ItemsControl.ItemTemplate>
+                                                    <ItemsControl.ItemsPanel>
+                                                        <ItemsPanelTemplate>
+                                                            <StackPanel />
+                                                        </ItemsPanelTemplate>
+                                                    </ItemsControl.ItemsPanel>
+                                                </ItemsControl>
+
+
+
+
+                                                <TextBlock Margin="0,20,0,0" Text="{Binding Payment.Type, StringFormat={}Payment : {0}}" />
+                                                <TextBlock Text="{Binding Payment.Paid, StringFormat={}Paid : {0}}" />
+                                                <TextBlock Text="{Binding Payment.Refunded, StringFormat={}Refund : {0}}" />
+                                                <TextBlock Width="500">--------------------------------------------------------------------------------------------------------------</TextBlock>
+
+                                                <TextBlock Text="Thank You! Visit Again..." TextAlignment="Center" />
+
+                                            </StackPanel>
+
+                                        </md:Card>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+
+
+                </md:Card>
+            </DockPanel>
+
+
+            <Border Grid.Row="2" CornerRadius="5,5,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button
+                        Name="btnNext"
+                        Grid.Column="3"
+                        Width="130"
+                        Height="70"
+                        VerticalAlignment="Center"
+                        Background="#3BA600"
+                        BorderBrush="#3BA600"
+                        Click="btnNext_Click"
+                        Content="Done"
+                        FontSize="18"
+                        Foreground="White" />
+                </Grid>
+            </Border>
+
+        </Grid>
+
+    </md:DialogHost>
+</Page>

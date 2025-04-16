@@ -1,0 +1,6 @@
+@BVC_API_CMS_HostAddress = https://localhost:7251
+
+GET {{BVC_API_CMS_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

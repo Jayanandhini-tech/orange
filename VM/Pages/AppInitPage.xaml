@@ -1,0 +1,46 @@
+﻿<Page
+    x:Class="VM.Pages.AppInitPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VM.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="AppInit"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{md:MaterialDesignFont}"
+    FontSize="18"
+    TextElement.FontSize="14"
+    TextElement.FontWeight="Medium"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    mc:Ignorable="d">
+
+    <md:DialogHost
+        DialogTheme="Inherit"
+        Identifier="pgInitHost"
+        Loaded="DialogHost_Loaded">
+        <md:DialogHost.DialogContent>
+            <StackPanel />
+        </md:DialogHost.DialogContent>
+
+        <StackPanel VerticalAlignment="Center">
+            <ProgressBar
+                HorizontalAlignment="Center"
+                IsIndeterminate="True"
+                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                Value="0" />
+
+            <TextBlock Text="Please wait" TextAlignment="Center" />
+            <TextBlock
+                x:Name="lblMessage"
+                Text=""
+                TextAlignment="Center" />
+        </StackPanel>
+
+
+    </md:DialogHost>
+
+
+</Page>

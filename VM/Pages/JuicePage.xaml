@@ -1,0 +1,441 @@
+﻿<Page
+    x:Class="VM.Pages.JuicePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="JuicePage"
+    d:DesignHeight="1920"
+    d:DesignWidth="1080"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{md:MaterialDesignFont}"
+    FontSize="20"
+    Loaded="Page_Loaded"
+    PreviewKeyDown="Page_PreviewKeyDown"
+    TextElement.FontSize="20"
+    TextElement.FontWeight="Medium"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    xmlns:fa="http://schemas.fontawesome.com/icons/"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Key="orderLeft" />
+      
+    </Page.Resources>
+
+    <!--<md:DialogHost>
+        <md:DialogHost.DialogContent>
+            <StackPanel />
+        </md:DialogHost.DialogContent>-->
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+
+            <!-- Popup for Modbus Connection Failure -->
+            <Popup Name="modbusAlertPopup" Width="300" Height="150" IsOpen="False">
+                <Border Background="Red" BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="10">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Modbus Connection Failed!" FontSize="20" Foreground="White" FontWeight="Bold" HorizontalAlignment="Center" />
+                        <TextBlock Text="Please check your connection and try again." FontSize="14" Foreground="White" HorizontalAlignment="Center" Margin="0,10,0,0" />
+                        <Button Content="Close" Width="100" Height="30" HorizontalAlignment="Center" Background="White" Foreground="Red" Click="ClosePopupButton_Click"/>
+                    </StackPanel>
+                </Border>
+            </Popup>
+            <DockPanel Grid.Row="0">
+                <MediaElement
+                Name="meVideo"
+                HorizontalAlignment="Stretch"
+                MediaEnded="meVideo_MediaEnded"
+                MediaFailed="meVideo_MediaFailed"
+                Stretch="Fill"
+                Volume="1" />
+            </DockPanel>
+
+            <Grid Grid.Row="1" Background="#FF9000">
+
+                <WrapPanel
+                Margin="20,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center">
+                    <md:PackIcon
+                    Width="20"
+                    Height="20"
+                    Margin="0,5,0,0"
+                    Kind="Phone" />
+                    <TextBlock Margin="5,0,0,0" Text="7894651320" />
+                </WrapPanel>
+
+                <TextBlock
+                Name="lblCurrentTime"
+                Margin="20,0"
+                VerticalAlignment="Center"
+                Text="{Binding Source={x:Static sys:DateTime.Now}, StringFormat='{}{0:dd-MM-yyyy hh:mm:ss tt}'}"
+                TextAlignment="Left" />
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="70" />
+                    <ColumnDefinition Width="200" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="30" />
+                </Grid.RowDefinitions>
+
+                <!-- Order -->
+                <Image Grid.Row="0" Grid.Column="0" Source="/Images/order.png" Stretch="Uniform" />
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Tap to Order" TextAlignment="Center" />
+
+                <!-- Arrow -->
+                <Image Grid.Row="0" Grid.Column="1" Width="70" Source="/Images/arrow.png" Stretch="Uniform" />
+
+                <!-- UPI -->
+                <Image Grid.Row="0" Grid.Column="2" Width="150" Source="/Images/upi2.png" Stretch="Uniform" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Scan to Pay" TextAlignment="Center" Height="30" VerticalAlignment="Top" />
+
+                <!-- Arrow -->
+                <Image Grid.Row="0" Grid.Column="3" Width="70" Source="/Images/arrow.png" Stretch="Uniform" />
+
+                <!-- Processing -->
+                <Image Grid.Row="0" Grid.Column="4" Width="150" Source="D:\Ram-Productions\Orange-With-Modal\CitronVM(FINAL COPY)(030425)\VM\Images\card3.png" Stretch="Uniform" />
+                <TextBlock Grid.Row="1" Grid.Column="4" Text="Debit/Credit Card" TextAlignment="Center" />
+
+                <!-- Arrow -->
+                <Image Grid.Row="0" Grid.Column="5" Width="70" Source="/Images/arrow.png" Stretch="Uniform" />
+
+                <!-- Juicing -->
+                <Image Grid.Row="0" Grid.Column="6" Source="/Images/juicing.png" Stretch="Uniform" />
+                <TextBlock Grid.Row="1" Grid.Column="6" Text="Juicing" TextAlignment="Center" />
+
+                <!-- Arrow -->
+                <Image Grid.Row="0" Grid.Column="7" Width="70" Source="/Images/arrow.png" Stretch="Uniform" />
+
+                <!-- Enjoy Juice -->
+                <Image Grid.Row="0" Grid.Column="8" Source="/Images/Glass.png" Stretch="Uniform" />
+                <TextBlock Grid.Row="1" Grid.Column="8" Text="Enjoy your Juice" TextAlignment="Center" />
+            </Grid>
+
+            <Grid Grid.Row="3">
+
+                <Grid.Background>
+                    <ImageBrush
+                    ImageSource="/Images/bg.png"
+                    Opacity="0.3"
+                    Stretch="Uniform" />
+
+                </Grid.Background>
+                <md:DialogHost  x:Name="pgJuicePageHost">
+                    <md:DialogHost.DialogContent >
+                        <StackPanel>
+                            <TextBlock
+                    Name="lblErrMessage"
+                    FontSize="28"
+                    Text="Machine out of Order. Sorry for the inconvenience"
+                    TextAlignment="Center"
+                    Margin="20"
+                    TextWrapping="Wrap"/>
+
+                            <Button 
+                  Name="btnOk"
+                  Content="Ok"
+                  FontSize="26"
+                        HorizontalAlignment="Center"
+                        Margin="10"
+                        Width="200"
+                        Height="60"
+                        Click="OnDialogOkClick"/>
+                        </StackPanel>
+                    </md:DialogHost.DialogContent>
+                </md:DialogHost>
+                <Canvas Height="600">
+
+                    <StackPanel
+                    Name="spOrder"
+                    Canvas.Left="340"
+                    Width="400"
+                    Height="550">
+                        <Image Source="/Images/Glass.png" Stretch="Uniform" />
+
+                        <TextBlock
+                        Name="lblPrice"
+                        Margin="0,20"
+                        FontSize="30"
+                        Text="₹130"
+                        TextAlignment="Center" />
+
+                        <Button
+                        Name="btnOrder"
+                        Width="150"
+                        Height="50"
+                        Click="btnOrder_Click"
+                        Content="ORDER"
+                        FontSize="20"
+                        Style="{StaticResource MaterialDesignRaisedButton}">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="Button.Click">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                            Storyboard.TargetName="spOrder"
+                                            Storyboard.TargetProperty="(Image.RenderTransform).(TranslateTransform.X)"
+                                            From="340"
+                                            To="40"
+                                            Duration="0:0:3" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Button.Triggers>
+
+                        </Button>
+                    </StackPanel>
+
+                    <StackPanel
+                    Name="spUpi"
+                    Canvas.Right="40"
+                    Width="400"
+                    Height="550"
+                    Margin="40,0">
+                        <TextBlock
+                        Name="lblQrMessage"
+                        Height="50"
+                        Text="Scan QR code to make the payment"
+                        TextAlignment="Center"
+                        TextWrapping="Wrap" />
+
+                        <Grid>
+                            <md:Card
+                            Name="processCard"
+                            Width="300"
+                            Height="300"
+                            Margin="0,20"
+                            Padding="4"
+                            Panel.ZIndex="2"
+                            Background="White"
+                            UniformCornerRadius="14">
+                                <ProgressBar
+                                Name="pgProcess"
+                                Width="200"
+                                Height="200"
+                                IsIndeterminate="True"
+                                Style="{StaticResource MaterialDesignCircularProgressBar}"
+                                Value="40" />
+                            </md:Card>
+
+                            <Image
+                            Name="imgUPI"
+                            Width="300"
+                            Height="300"
+                            Margin="0,20"
+                            Panel.ZIndex="3"
+                            Source="/Images/pleasewait.png"
+                            Stretch="Uniform" />
+
+                            <Image
+                            Name="imgOrnageProcess"
+                            Width="300"
+                            Height="300"
+                            Margin="0,20"
+                            Panel.ZIndex="3"
+                             Source="D:\Ram-Productions\Orange-With-Modal\CitronVM(FINAL COPY)(030425)\VM\Images\halforange.png"
+                            Stretch="Uniform">
+                                <Image.RenderTransform>
+                                    <RotateTransform CenterX="150" CenterY="150" />
+                                </Image.RenderTransform>
+                                <Image.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <Trigger Property="Image.Visibility" Value="Visible">
+                                                <Trigger.EnterActions>
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <DoubleAnimation
+                                                            RepeatBehavior="Forever"
+                                                            Storyboard.TargetProperty="RenderTransform.Angle"
+                                                            From="0"
+                                                            To="360"
+                                                            Duration="0:0:1" 
+                                                            />
+                                                           
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </Trigger.EnterActions>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Grid>
+
+                        <StackPanel>
+                            <TextBlock
+                            Name="lblSecondsRemains"
+                            FontSize="30"
+                            Text="180 Seconds"
+                            TextAlignment="Center" />
+                            <TextBlock
+                            Name="lblSecondsPart2"
+                            Text="Remaining to complete the payment"
+                            TextAlignment="Center" />
+                        </StackPanel>
+                        <Button
+                        Name="btnCancel"
+                        Width="250"
+                        Height="50"
+                        Margin="0,20,0,0"
+                        Background="Red"
+                        BorderBrush="Red"
+                        Click="btnCancel_Click"
+                        Content="CANCEL"
+                        FontSize="20"
+                        Style="{StaticResource MaterialDesignRaisedButton}" />
+                    </StackPanel>
+
+                </Canvas>
+                <md:DialogHost x:Name="OrderDialogHost"
+                     HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch">
+
+                    <md:DialogHost.DialogContent>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                            <md:Card Background="White"
+                              Padding="10,20,20,20"
+                              md:ElevationAssist.Elevation="Dp24"
+                              md:UniformCornerRadius="10"
+                              Width="400"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center">
+
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="Select Payment Method"
+                                    FontSize="20"
+                                    FontWeight="Bold"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,0,0,10"/>
+
+                                    <Button Name="CardPayment"
+                                     Width="250"
+                                     Height="50"
+                                     Background="Red"
+                                     BorderBrush="Red"
+                                     Click="btnPineApps_Click"
+                                     Content="Card Payment"
+                                     FontSize="16"
+                                     Foreground="White"
+                                     Style="{StaticResource MaterialDesignRaisedButton}" />
+
+                                    <Button Name="UpiQr"
+                                         Width="250"
+                                         Height="50"
+                                         Background="Red"
+                                         BorderBrush="Red"
+                                         Click="btnQr_Click"
+                                         Content="UPI QR"
+                                         FontSize="16"
+                                         Foreground="White"
+                                         Style="{StaticResource MaterialDesignRaisedButton}"
+                                         Margin="0,10,0,0"/>
+
+                                    <Button Width="200"
+                                     Height="40"
+                                     Background="Gray"
+                                     BorderBrush="Black"
+                                     Click="CloseDialog"
+                                     Content="CANCEL"
+                                     FontSize="16"
+                                     Foreground="White"
+                                     Style="{StaticResource MaterialDesignRaisedButton}"
+                                     Margin="0,20,0,0"/>
+                                </StackPanel>
+                            </md:Card>
+
+                        </Grid>
+                    </md:DialogHost.DialogContent>
+                </md:DialogHost>
+                <materialDesign:DialogHost x:Name="MainDialogHost"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center">
+                    <materialDesign:DialogHost.DialogContent>
+                        <Border Padding="20" Background="White" CornerRadius="10" Width="Auto" MinWidth="300">
+                            <StackPanel HorizontalAlignment="Center">
+                                <!-- Dialog Title -->
+                                <TextBlock Text="⚠ Order is empty!" 
+                                       FontSize="18" FontWeight="Bold" Foreground="Red"
+                                       TextAlignment="Center" Margin="0,10,0,10"/>
+
+                                <!-- Message -->
+                                <TextBlock Text="Please add items to your order before proceeding."
+                                   FontSize="14" TextAlignment="Center"
+                                   Foreground="Black" Margin="0,5,0,15" />
+
+                                <!-- Action Button -->
+                                <Button Content="OK"
+                            Command="{x:Static materialDesign:DialogHost.CloseDialogCommand}"
+                            HorizontalAlignment="Center"
+                            Padding="10,5"
+                            Background="Red"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            BorderThickness="0"
+                            Width="80"
+                             Style="{StaticResource MaterialDesignRaisedButton}"
+                            Margin="0,5,0,5"/>
+                            </StackPanel>
+                        </Border>
+                    </materialDesign:DialogHost.DialogContent>
+                </materialDesign:DialogHost>
+            </Grid>
+
+            <Border Grid.Row="4" TextElement.Foreground="{DynamicResource MaterialDesignBody}">
+                <Grid>
+                    <Button
+    Name="btnBack"
+    Grid.Row="3"
+    Grid.Column="0"
+    Width="110"
+    Height="40"
+    VerticalAlignment="Bottom"
+    HorizontalAlignment="Left"
+    Margin="20"
+    Background="#CA1F2F"
+    BorderBrush="#CA1F2F"
+    Foreground="White"
+    FontSize="18"
+    Content="Back"
+    Click="btnBack_Click"/>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+
+
+                </Grid>
+            </Border>
+
+        </Grid>
+    </ScrollViewer>
+
+    <!--</md:DialogHost>-->
+</Page>

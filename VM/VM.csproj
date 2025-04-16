@@ -1,0 +1,168 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+		<AssemblyName>BVC</AssemblyName>
+		<IncludePackageReferencesDuringMarkupCompilation>false</IncludePackageReferencesDuringMarkupCompilation>
+		<PackageIcon>LogoIcon.png</PackageIcon>
+		<ApplicationIcon>Images\Icon.ico</ApplicationIcon>
+		<FileVersion>1.0.1</FileVersion>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="appsettings.Development.json" />
+		<None Remove="appsettings.json" />
+		<None Remove="Images\background.jpg" />
+		<None Remove="Images\button.png" />
+		<None Remove="Images\cash2.jpg" />
+		<None Remove="Images\counterpayment.jpg" />
+		<None Remove="Images\IdCard.jpg" />
+		<None Remove="Images\IdCardTap.jpg" />
+		<None Remove="Images\Logo.png" />
+		<None Remove="Images\placeholder-man.png" />
+		<None Remove="Images\pleasewait.png" />
+		<None Remove="Images\Products\default.jpg" />
+		<None Remove="Images\Products\pic1.jpg" />
+		<None Remove="Images\Sprial.png" />
+		<None Remove="Images\upi-bottom.jpg" />
+		<None Remove="Images\upi-top.jpg" />
+		<None Remove="Images\upi2icon.jpg" />
+		<None Remove="log4net.config" />
+		<None Remove="Videos\Home\Ad.mp4" />
+		
+		<None Remove="Images\Products\Glass.png" />
+		<None Remove="Images\bg.png" />
+		<None Remove="Images\arrow.png" />
+		<None Remove="Images\Glass.png" />
+		<None Remove="Images\halforange.png" />
+		<None Remove="Images\juicing.png" />
+		<None Remove="Images\order.png" />
+		<None Remove="Images\pleasewait.png" />
+		<None Remove="Images\upi2.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="appsettings.Development.json">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\Icon.ico" />
+		<Content Include="Images\Products\default.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\Products\pic1.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\Sprial.png">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Resource Include="Images\background.jpg">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\button.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Content Include="log4net.config">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Videos\Home\Ad.mp4">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+
+		<Content Include="Images\pleasewait.png">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ESC-POS-USB-NET" Version="1.1.3" />
+		<PackageReference Include="Mapster" Version="7.4.0" />
+		<PackageReference Include="MaterialDesignThemes" Version="4.9.0" />
+		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="8.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="8.0.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageReference Include="NPOI" Version="2.7.0" />
+		<PackageReference Include="System.IO.Ports" Version="8.0.0" />
+		<PackageReference Include="System.Speech" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\DTO\CMS.Dto.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="FaceId">
+	    <HintPath>..\..\..\..\..\Beta\DLL\FaceId\FaceId.dll</HintPath>
+	    <Private>True</Private>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<Resource Include="Images\cash2.jpg" />
+		<Resource Include="Images\counterpayment.jpg" />
+		<Resource Include="Images\IdCard.jpg" />
+		<Resource Include="Images\IdCardTap.jpg" />
+		<Resource Include="Images\Logo.png" />
+		<Resource Include="Images\placeholder-man.png" />
+		<Resource Include="Images\pleasewait.png" />
+		<Resource Include="Images\upi-bottom.jpg" />
+		<Resource Include="Images\upi-top.jpg" />
+		<Resource Include="Images\upi2icon.jpg" />
+	
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Resource Include="Images\arrow.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\bg.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\Glass.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Content Include="Images\halforange.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Resource Include="Images\juicing.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Resource Include="Images\order.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+		<Content Include="Images\Products\default.jpg">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Images\Products\Glass.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Resource Include="Images\upi2.png">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Resource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="Images\LogoIcon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
+
+</Project>

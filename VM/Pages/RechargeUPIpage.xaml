@@ -1,0 +1,145 @@
+﻿<Page
+    x:Class="VM.Pages.RechargeUPIpage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:VM.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="RechargeUPIpage"
+    d:DesignHeight="1000"
+    d:DesignWidth="1040"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{md:MaterialDesignFont}"
+    FontSize="18"
+    Loaded="Page_Loaded"
+    TextElement.FontSize="14"
+    TextElement.FontWeight="Medium"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    Unloaded="Page_Unloaded"
+    mc:Ignorable="d">
+
+
+    <md:DialogHost Identifier="pgRechargeUPIHost">
+        <md:DialogHost.DialogContent>
+            <StackPanel />
+        </md:DialogHost.DialogContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Grid.Row="0">
+                <md:Card
+                    Margin="20"
+                    md:ElevationAssist.Elevation="Dp5"
+                    md:UniformCornerRadius="10">
+                    <md:Card
+                        Width="600"
+                        MaxHeight="900"
+                        Margin="20"
+                        md:ElevationAssist.Elevation="Dp5"
+                        md:UniformCornerRadius="10"
+                        Background="White"
+                        TextElement.Foreground="Black">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="80" />
+                                <RowDefinition Height="40" />
+                                <RowDefinition Height="150" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+
+                            <Image
+                                Grid.Row="0"
+                                Margin="0,20,0,0"
+                                Source="/Images/upi-top.jpg"
+                                Stretch="Uniform" />
+
+                            <Image
+                                x:Name="img_QR"
+                                Grid.Row="1"
+                                Width="200"
+                                Height="200"
+                                VerticalAlignment="Center"
+                                Source="/Images/pleasewait.png"
+                                Stretch="Uniform" />
+
+                            <StackPanel Grid.Row="2">
+                                <TextBlock
+                                    x:Name="lblDisplayName"
+                                    Text="Bharth Vending Corporation"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap" />
+                                <TextBlock
+                                    x:Name="lblPrice"
+                                    Margin="0,5,0,0"
+                                    FontSize="20"
+                                    FontWeight="Bold"
+                                    Text="₹ "
+                                    TextAlignment="Center" />
+                            </StackPanel>
+
+                            <TextBlock
+                                Grid.Row="3"
+                                FontSize="14"
+                                Text="Scan &amp; Pay with any UPI app"
+                                TextAlignment="Center" />
+
+                            <StackPanel Grid.Row="4" VerticalAlignment="Center">
+                                <TextBlock
+                                    Name="lblSecondsleft"
+                                    FontSize="35"
+                                    Foreground="#ca1f2f"
+                                    Text="180 Seconds"
+                                    TextAlignment="Center" />
+                                <TextBlock
+                                    Name="lblSecondsleft2"
+                                    Margin="0,5,0,0"
+                                    FontSize="14"
+                                    Foreground="#ca1f2f"
+                                    Text="Remaining to complete the Payment"
+                                    TextAlignment="Center" />
+                            </StackPanel>
+
+                            <Image
+                                Grid.Row="5"
+                                Source="/Images/upi-bottom.jpg"
+                                Stretch="Uniform" />
+
+                        </Grid>
+
+                    </md:Card>
+                </md:Card>
+            </DockPanel>
+
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="150" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Name="btnBack"
+                    Grid.Column="0"
+                    Width="130"
+                    Height="70"
+                    VerticalAlignment="Center"
+                    Click="btnBack_Click"
+                    Content="Back"
+                    FontSize="18"
+                    Foreground="White" />
+            </Grid>
+
+
+        </Grid>
+
+
+
+    </md:DialogHost>
+</Page>
